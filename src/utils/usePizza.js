@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import OrderContext from '../components/OrderContext';
 
 export default function usePizza({ pizzas, inputs }) {
   // create state to hold order
-  const [order, setOrder] = useState([]);
+  // removed this line because we moved useState up to the provider.
+  // const [order, setOrder] = useState([]);
+  // Now we access both our state and our update functions via context.
+  const [order, setOrder] = useContext(OrderContext);
+
   // make a function to add things to order
   function addToOrder(orderedPizza) {
     setOrder([...order, orderedPizza]);
@@ -17,4 +22,11 @@ export default function usePizza({ pizzas, inputs }) {
     ]);
   }
   // send this data to serverless function when they checkout.
+  // TODO
+
+  return {
+    order,
+    addToOrder,
+    removeFromOrder,
+  };
 }
