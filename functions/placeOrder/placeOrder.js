@@ -41,6 +41,13 @@ function wait(ms = 0) {
 
 exports.handler = async (event, context) => {
   const body = JSON.parse(event.body);
+  // check if honeypot is filled
+  if (body.ggul) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: `ERR: 5266` }),
+    };
+  }
   // validate data coming in
   const requiredFields = ['email', 'name', 'order'];
 

@@ -17,6 +17,7 @@ export default function OrderPage({ data }) {
   const { values, updateValue } = useForm({
     name: '',
     email: '',
+    ggul: '',
   });
   const {
     order,
@@ -55,6 +56,14 @@ export default function OrderPage({ data }) {
             id="email"
             value={values.email}
             onChange={updateValue}
+          />
+          <input
+            type="ggul"
+            name="ggul"
+            id="ggul"
+            value={values.ggul}
+            onChange={updateValue}
+            className="ggul"
           />
         </fieldset>
         <fieldset className="menu" disabled={loading}>
