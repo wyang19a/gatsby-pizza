@@ -34,7 +34,7 @@ export default function usePizza({ pizzas, values }) {
     console.log(e);
     setLoading(true);
     setError(null);
-    setMessage(null);
+    // setMessage(null);
 
     // gather all info
     const body = {
@@ -58,12 +58,13 @@ export default function usePizza({ pizzas, values }) {
     const text = JSON.parse(await res.text());
 
     // check if everything worked,
-    if (res.Status >= 400 && res.Status < 600) {
+    if (res.status >= 400 && res.status < 600) {
       setLoading(false); // turn off loading
       setError(text.message);
     } else {
+      console.log(res.status);
       setLoading(false);
-      setMessage('Success! Come on down for your pizza');
+      setMessage('Success! Please check your email for the receipt.');
     }
   }
 
